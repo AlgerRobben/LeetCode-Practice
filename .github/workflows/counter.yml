@@ -29,7 +29,7 @@ jobs:
       - name: Update README
         run: |
           COUNT=$(find src/main/java -name "*.java" | wc -l)
-          sed -i "s/✔[0-9]\+/$COUNT/g" README.md
+          sed -i "s/✔[0-9]\+/✔$COUNT/g" README.md
 
       - name: Commit and Push
         run: |
