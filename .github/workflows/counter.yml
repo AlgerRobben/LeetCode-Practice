@@ -1,0 +1,40 @@
+name: Auto Count Exercises
+
+on:
+  push:
+    branches:
+      - master  # 如果你的主分支叫 main，请改为 main
+    paths:
+      - 'src/main/java/**' # 只有当你改动代码目录时才触发，节省资源
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # 赋予 Action 修改并推送代码的权限
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Count Java Files
+        id: counter
+        run: |
+          # 统计 src/main/java 下所有以 .java 结尾的文件数量
+          # 如果你的文件命名有规律（比如都包含 Solution），可以改为 "-name '*Solution.java'"
+          COUNT=$(find src/main/java -name "*.java" | wc -l)
+          echo "Current count is $COUNT"
+          echo "count=$COUNT" >> $GITHUB_ENV
+
+      - name: Update README
+        run: |
+          # 使用 sed 替换 之间的内容
+          sed -i "s/.*/${{ env.count }}/" README.md
+
+      - name: Commit and Push
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add README.md
+          # 只有当 README 确实发生变化时才提交，防止死循环
+          git diff --quiet && git diff --staged --quiet || (git commit -m "docs: 自动更新做题统计至 ${{ env.count }} 道" && git push)
