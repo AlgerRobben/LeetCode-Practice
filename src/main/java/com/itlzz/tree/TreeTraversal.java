@@ -6,6 +6,7 @@ import java.util.List;
 
 
 //leetcode 94.二叉树的中序遍历
+//leetcode 102.二叉树的层序遍历
 
 public class TreeTraversal {
 
@@ -47,4 +48,10 @@ public class TreeTraversal {
         }
         return lst;
     }
+
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        return null;
+    }
+
+
 }
