@@ -1,4 +1,4 @@
-package com.itlzz.sunstring;
+package com.itlzz.substring;
 
 //leetcode 560.和为K的子数组
 
