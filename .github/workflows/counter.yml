@@ -28,8 +28,9 @@ jobs:
 
       - name: Update README
         run: |
-          # 使用 sed 替换 之间的内容
-          sed -i "s/[0-9]*/${{ env.count }}/g" README.md
+          COUNT=$(find src/main/java -name "*.java" | wc -l)
+          # 关键修改：只替换被 包围的部分
+          sed -i "s/[0-9]*/$COUNT/g" README.md
 
       - name: Commit and Push
         run: |
