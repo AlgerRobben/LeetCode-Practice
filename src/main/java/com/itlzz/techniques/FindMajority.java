@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+//leetcode 169.多数元素
+
 public class FindMajority {
 
     //哈希，空间复杂度O(n)
