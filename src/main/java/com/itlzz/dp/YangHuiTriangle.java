@@ -3,6 +3,8 @@ package com.itlzz.dp;
 import java.util.LinkedList;
 import java.util.List;
 
+//leetcode 70.杨辉三角
+
 public class YangHuiTriangle {
 
     public List<List<Integer>> generate(int numRows) {

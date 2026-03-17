@@ -3,6 +3,8 @@ package com.itlzz.stack;
 import java.util.Deque;
 import java.util.LinkedList;
 
+//leetcode 20.有效的括号
+
 public class validbracket {
     public boolean isValid(String s) {
         Deque<Character> stack = new LinkedList<>();
